@@ -210,7 +210,7 @@
 .swiper-pagination {
   position: absolute;
   text-align: center;
-  transition: 500ms opacity;
+  transition: 5000ms opacity;
   transform: translate3d(0, 0, 0);
   z-index: 10;
 }
