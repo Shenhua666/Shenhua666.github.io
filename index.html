@@ -1,187 +1,454 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="google-site-verification" content="Gc20Eq7xw7AbP97JIbSBsOe3okYfF1ZyI0pTG2YA02Q" />
-		<link rel="Shortcut Icon" href="favicon.ico">
-		<link rel="Bookmark" href="favicon.ico">
-		<meta charset="utf-8" />
-		<title>PCL2主页[非官方]</title>
-	</head>
-		<style type="text/css">
-			.swiper-container 
-			{
-    			width: 800px;
-   				 height: 470px;
-   				 border-radius: 20px;
-   			     position: relative;
-   			      left:-10px;
-			}  
-		
-		.swiper-wrapper img
-			{
-				width: 100%;
-   				height: 100%;
-			}
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资源下载</title>
+<style>
+  body, html {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #e6f3e6, #4CAF50);
+    color: #333;
+    min-height: 100vh;
+  }
+  .top-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1000;
+  }
+  .top-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  .top-nav li {
+    margin-left: 20px;
+  }
+  .top-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .top-nav a:hover, .top-nav a.active {
+    color: #4CAF50;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 60px; /* 为固定导航栏留出空间 */
+  }
+  .download-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  .download-section:nth-child(even) {
+    background-color: rgba(240, 240, 240, 0.9);
+  }
+  h1, h2 {
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h2 {
+    color: #2E7D32;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+  }
+  .download-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1400px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+    flex-wrap: wrap;
+  }
+  .download-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 280px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .download-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex-wrap: nowrap;
+  }
+  .download-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #4CAF50;
+  }
+  .download-info {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .download-info h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+  .download-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+  .download-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .download-button:hover {
+    background-color: #45a049;
+  }
+  .music-player {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .music-player:hover {
+    transform: scale(1.1);
+  }
+  .music-icon {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotate 5s linear infinite;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  .music-player:hover .music-icon {
+    box-shadow: 0 0 0 2px black, 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .music-notes {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  .note {
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    animation: float 2s ease-in-out infinite;
+    opacity: 0;
+  }
+  .note:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .note:nth-child(3) {
+    animation-delay: 1s;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); opacity: 0; }
+    50% { transform: translateY(-20px); opacity: 1; }
+  }
+  .back-to-home {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #4CAF50;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  .back-to-home:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+</style>
+</head>
+<body>
+  <nav class="top-nav">
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="downloads.html" class="active">资源下载</a></li>
+      <li><a href="contact.html">联系我</a></li>
+    </ul>
+  </nav>
 
-		</style>
-<link rel="stylesheet" href="css/swiper-bundle.css"/>
-<link rel="stylesheet" type="text/css" href="css/int.css" />
-	<body>
-		<script src="js/swiper-bundle.min.js"></script>
-		
-		<audio autoplay  loop>
-			<source src="sound/music2.mp3" type='audio/mp3'>
-		</audio>
-	<div class="box1">
-	<div class="box3">
-	<div class="box2">
-		<a href="Download.html"target="_blank">
-			<div class="xiazai" title="戳我下载PCL2及Mminecraft环境"></div>
-		</a>	
-	</div>	
-	
-<ul class="lan">
-	<li id="tle"></li>
-	<li class="onl">
-	<a  href="https://afdian.net/p/8fe6fefefde811e9bda952540025c377"target="_blank">
-	<img src="img/cw.png" />
-	<p class="bat">
-	
-		【必读】赞助说明与常见问题
-		
-	</p>
-	<span class="at">
-		2019年11月3日
-	</span>
-	</a>
-  
-	</li>
-	<li class="onl">
-	<a href="https://afdian.net/p/47faa9940d6611ec8ba852540025c377"target="_blank">
-	<img src="img/cw.png" />
-	<p class="bat">
-		
-		【制作组通讯 21w37a】Bug 之后，又逢双庆
-		
-	</p>
-	<span class="at">
-		2021年9月4日
-	</span>
-	</a>
-	
-	</li>
-	<li class="onl">
-		<a href="https://afdian.net/p/ee6c43940a0711ec8d9b52540025c377"target="_blank">	
-	<img src="img/cw.png" />
-	<p class="bat">
-		
-		正式版 2.2.1 | 联机早期测试
-		
-	</p>
-	<span class="at">
-		2021年8月31日
-	</span>
-	</a>
+  <div class="content">
+    <section class="download-section">
+      <h2>启动器下载</h2>
+      <div class="download-items">
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/pcl2.png">
+          </div>
+          <div class="download-info">
+            <h3>PCL 2</h3>
+            <p>版本：最新版本<br>支持的系统：Windows<br></p>
+          </div>
+          <a href="https://afdian.com/p/0164034c016c11ebafcb52540025c377">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="IMG/hmcl.png">
+          </div>
+          <div class="download-info">
+            <h3>HMCL</h3>
+            <p>版本：最新版本<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://hmcl.huangyuhui.net/download/">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/bakaxl.png">
+          </div>
+          <div class="download-info">
+            <h3>BaKaXl</h3>
+            <p>版本：最新版本<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://www.bakaxl.com">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/guan.png">
+          </div>
+          <div class="download-info">
+            <h3>官方启动器</h3>
+            <p>版本：最新版本<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://www.minecraft.net/zh-hant/download">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+      </div>
+    </section>
 
-	</li>
-	<li class="onl">
-		<a href="https://afdian.net/p/1578442a0a0711ec953a52540025c377"target="_blank">	
-	<img src="img/cw.png" />
-	<p class="bat">
-		
-		快照版 2.2.1 | 联机的小优化
+    <section class="download-section">
+      <h2>服务端下载</h2>
+      <div class="download-items">
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/bedrock.png">
+          </div>
+          <div class="download-info">
+            <h3>官方基岩版服务器</h3>
+            <p>版本：最新版本<br>模组加载器：无<br>插件支持：无<br>支持的系统：Windows/Ubuntu(Linux)</p>
+          </div>
+          <a href="https://www.minecraft.net/zh-hant/download/server/bedrock"></a>
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/java.png">
+          </div>
+          <div class="download-info">
+            <h3>官方Java版服务器</h3>
+            <p>版本：最新版本(历史服务端请前往官启下载)<br>模组加载器：无(可自行安装)<br>插件支持：无<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://www.minecraft.net/zh-hant/download/server">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/getbukkit.png">
+          </div>
+          <div class="download-info">
+            <h3>Java第三方插件服水桶端</h3>
+            <p>版本: 1.0.0-1.21<br>模组加载器：无<br>插件支持：Bukkit<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://getbukkit.org/download/craftbukkit">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/spigotmc.png">
+          </div>
+          <div class="download-info">
+            <h3>Java第三方插件服水龙头端</h3>
+            <p>版本: 1.0.0-1.21(部分需要自主构建)<br>模组加载器：无<br>插件支持：Bukkit/SpigotAPI<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://www.spigotmc.org/">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/catserver.png">
+          </div>
+          <div class="download-info">
+            <h3>Java第三方模组插件服猫端<br></h3>
+            <p><br>版本: 1.12.2/1.16.5/1.18.2<br>模组加载器：Forge<br>插件支持：Bukkit/SpigotAPI<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://catmc.org/">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">
+            <img src="img/Mohist.png">
+          </div>
+          <div class="download-info">
+            <h3>Java第三方模组插件服MohistMC</h3>
+            <p>版本:1.7.10/1.12.2/1.16.5/1.18.2/1.19.2<br>/1.19.4/1.20/1.20.1/1.20.2<br>模组加载器：NeoForge/Forge/Fabric<br>插件支持：Bukkit/SpigotAPI<br>支持的系统：Windows/MacOS/Linux</p>
+          </div>
+          <a href="https://mohistmc.com/downloads">
+          <button class="download-button">下载</button>
+          </a>
+        </div>
+      </div>
+    </section>
 
-		
-	</p>
-	<span class="at">
-		2021年8月20日
-	</span>
-	</a>
-	</li>
-</ul>	
+    <section class="download-section">
+      <h2>信息查询/资源检索</h2>
+      <div class="download-items">
+        <div class="download-item">
+          <div class="download-icon">🎮</div>
+          <div class="download-info">
+            <h3>游戏内资料查询</h3>
+            <p>方块/生物/怪物/Buff。你想知道的都在这</p>
+          </div>
+          <a href="https://minecraft.fandom.com/zh/wiki/Minecraft_Wiki">
+          <button class="download-button">前往</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">📚</div>
+          <div class="download-info">
+            <h3>模组百科</h3>
+            <p>查找想找的模组和模组的玩法</p>
+          </div>
+          <a href="https://search.mcmod.cn/">
+          <button class="download-button">前往</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">🎨</div>
+          <div class="download-info">
+            <h3>国内材质包/光影下载</h3>
+            <p>收录国内大部分材质光影</p>
+          </div>
+          <a href="https://mgcd.hypercol.com/works/">
+          <button class="download-button">前往</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">🖼</div>
+          <div class="download-info">
+            <h3>全球材质包/光影下载</h3>
+            <p>收录全球大部分知名材质光影</p>
+          </div>
+          <a href="https://legacy.curseforge.com/minecraft/shaders">
+          <button class="download-button">前往</button>
+        </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">🗺</div>
+          <div class="download-info">
+            <h3>地图下载源1</h3>
+            <p>集合国内外优质地图<br>(国内首选)</p>
+          </div>
+          <a href="https://www.titaike.cn/">
+          <button class="download-button">前往</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">🗺</div>
+          <div class="download-info">
+            <h3>地图下载源2</h3>
+            <p>部分优质地图和整合包资源<br>(类似于MCBBS)</p>
+          </div>
+          <a href="https://www.minebbs.com">
+          <button class="download-button">前往</button>
+          </a>
+        </div> 
+        <div class="download-item">
+          <div class="download-icon">🗺</div>
+          <div class="download-info">
+            <h3>地图下载源3</h3>
+            <p>分类非常齐全的地图资源网站<br>(建议配合浏览器翻译插件使用)</p>
+          </div>
+          <a href="https://www.minecraftmaps.com">
+          <button class="download-button">前往</button>
+          </a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">🗺</div>
+          <div class="download-info">
+            <h3>地图下载源4</h3>
+            <p>分类非常齐全的地图资源网站<br>(部分网络加载比源3快，但更新较慢)</p>
+          </div>
+          <a href="https://zh.mapcraft.me">
+          <button class="download-button">前往</button>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 
-	</div>
-	 
-	 <div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide"><a href="img/lb/1.png"target="_blank"><img src="img/lb/1.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/2.png"target="_blank"><img src="img/lb/2.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/3.png"target="_blank"><img src="img/lb/3.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/4.png"target="_blank"><img src="img/lb/4.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/5.png"target="_blank"><img src="img/lb/5.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/6.png"target="_blank"><img src="img/lb/6.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/7.png"target="_blank"><img src="img/lb/7.png"/></div>
-        <div class="swiper-slide"><a href="img/lb/8.png"target="_blank"><img src="img/lb/8.png"/></div>
-	<div class="swiper-slide"><a href="img/lb/9.png"target="_blank"><img src="img/lb/9.png"/></div>
-	<div class="swiper-slide"><a href="img/lb/10.png"target="_blank"><img src="img/lb/10.png"/></div>
-	<div class="swiper-slide"><a href="img/lb/11.png"target="_blank"><img src="img/lb/11.png"/></div>
+  <div class="music-player">
+    <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=2615464956&auto=1&height=66"></iframe> -->
+    <div class="music-icon">
+      <audio id="musicfx" loop="loop" autoplay="autoplay">
+        <source src="music/1.mp3" type="audio/mpeg">
+      </audio>
+      <script>
+        var audio = document.getElementById('musicfx');
+        audio.volume = 0.1; // 设置音量为10%
+      </script>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/>
+      </svg>
     </div>
-    <!-- 分页器 -->
-    <div class="swiper-pagination"></div>
-    
-    <!-- 导航按钮 -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-</div>
+    <div class="music-notes">
+      <span class="note">♪</span>
+      <span class="note">♫</span>
+      <span class="note">♩</span>
+    </div>
+  </div>
 
-<!--==========================================-->
-</div>
+  <a href="index.html" class="back-to-home" title="回到主页">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </a>
 
-<div class="box5">
-	
-<a href="https://www.afdian.net/@LTCat"target="_blank"><div  style="background: url(img/aifadian.png);background-size:100%100%;" class="box4">
-	
-</div></a>
- <a href="https://www.mcmod.cn/"target="_blank"><div  style="background: url(img/mcbaike.png);background-size:100%100%;" class="box4">
-	
-</div></a>	
-<a href="https://www.mcbbs.net/"target="_blank"><div  style="background: url(img/wdsjzwlt.png);background-size:100%100%;" class="box4">
-	
-</div>
-<a/>
-<a href="http://www.minecraftxz.com/"target="_blank"><div  style="background: url(img/zwxzz.png);background-size:100%100%;" class="box4">
-	
-</div><a/>
-	
-<a href="https://files.minecraftforge.net/"target="_blank"><div  style="background: url(img/FORGE.png);background-size:100%100%;" class="box4">
-	
-</div><a/>
-<a href="https://www.optifine.net/downloads"target="_blank"><div  style="background: url(img/optifine.png);background-size:100%100%;" class="box4">
-	
-</div><a/>
-<a href="https://www.bilibili.com/"target="_blank"><div  style="background: url(img/bilibili.png);background-size:100%100%;" class="box4">
-	
-</div><a/>
-<a href="https://pcl2-help.gitee.io/ "target="_blank"><div  style="background: url(img/help.png);background-size:100%100%;" class="box4">
-	
-</div><a/>
-
-</div>
-
-</div>
-<script>        
-  var mySwiper = new Swiper ('.swiper-container', {
-    direction: 'horizontal', // 横向切换选项
-    loop: true, // 循环模式选项
-     autoplay: {
-    delay: 1500,//1.5秒切换一次
-  },
-    // 分页器
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    
-    
-    // 前进后退按钮
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    
-    // 滚动条
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  })        
-  </script>
-</html>
+</body></html>
