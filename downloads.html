@@ -1,23 +1,43 @@
 <html><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>灭天神话_666的个人主页 - 资源下载</title>
+<title>资源下载 - 灭天神话_666的个人主页</title>
 <link rel="icon" type="img/png" href="img/favicon.png">
 <style>
   body, html {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #e6f3e6, #4CAF50);
     color: #333;
     min-height: 100vh;
+    background-color: #1e90ff;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e90ff;
   }
   .top-nav {
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
-    padding: 10px;
+    height: 30px;
+    background-color: #1e90ff; 
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
+    position: fixed;
+    padding: 10px;
+  }
+  .nav-container {
+    display: flex;
+    justify-content: flex-end;
   }
   .top-nav ul {
     list-style-type: none;
@@ -30,18 +50,34 @@
   }
   .top-nav a {
     text-decoration: none;
-    color: white;
+    color: #f0f0f0;
     font-weight: bold;
-    transition: color 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .top-nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
   }
   .top-nav a:hover, .top-nav a.active {
-    color: #4CAF50;
+    color: black;
+    transform: scale(1.1);
+  }
+  .top-nav a:hover::after, .top-nav a.active::after {
+    transform: scaleX(1);
   }
   .content {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 60px; /* 为固定导航栏留出空间 */
+    padding-top: 0px;
   }
   .download-section {
     flex: 1;
@@ -50,10 +86,10 @@
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #ffffff;
   }
   .download-section:nth-child(even) {
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: #f5f5f5f5
   }
   h1, h2 {
     color: #4CAF50;
@@ -198,11 +234,13 @@
 </head>
 <body>
   <nav class="top-nav">
+    <div class="nav-container">
     <ul>
       <li><a href="index.html">首页</a></li>
       <li><a href="downloads.html" class="active">资源下载</a></li>
       <li><a href="contact.html">联系我</a></li>
     </ul>
+  </div>
   </nav>
 
   <div class="content">
@@ -271,7 +309,7 @@
             <h3>官方基岩版服务器</h3>
             <p>版本：最新版本<br>模组加载器：无<br>插件支持：无<br>支持的系统：Windows/Ubuntu(Linux)</p>
           </div>
-          <a href="https://www.minecraft.net/zh-hant/download/server/bedrock">
+          <a href="https://www.minecraft.net/zh-hant/download/server/bedrock"></a>
           <button class="download-button">下载</button>
           </a>
         </div>
@@ -316,7 +354,7 @@
             <img src="img/catserver.png">
           </div>
           <div class="download-info">
-            <h3>Java第三方模组插件服CatServer</h3>
+            <h3>Java第三方模组插件服CatServer<br></h3>
             <p>版本: 1.12.2/1.16.5/1.18.2<br><br>模组加载器：Forge<br>插件支持：Bukkit/SpigotAPI<br>支持的系统：Windows/MacOS/Linux</p>
           </div>
           <a href="https://catmc.org/">
@@ -397,7 +435,7 @@
             <h3>地图下载源2</h3>
             <p>部分优质地图和整合包资源<br>(类似于MCBBS)</p>
           </div>
-          <a href="https://www.minebbs.com/resources/">
+          <a href="https://www.minebbs.com">
           <button class="download-button">前往</button>
           </a>
         </div> 
@@ -426,25 +464,47 @@
   </div>
 
   <div class="music-player">
-    <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=2615464956&auto=1&height=66"></iframe> -->
-    <div class="music-icon">
-      <audio id="musicfx" loop="loop" autoplay="autoplay">
+    <div class="music-icon" onclick="toggleMusic()">
+      <audio id="musicfx" loop="loop" autoplay="autoplay" muted>
         <source src="music/1.mp3" type="audio/mpeg">
       </audio>
-      <script>
-        var audio = document.getElementById('musicfx');
-        audio.volume = 0.1; // 设置音量为10%
-      </script>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/>
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/>
+        </svg>
     </div>
     <div class="music-notes">
-      <span class="note">♪</span>
-      <span class="note">♫</span>
-      <span class="note">♩</span>
+        <span class="note">♪</span>
+        <span class="note">♫</span>
+        <span class="note">♩</span>
     </div>
-  </div>
+</div>
+
+<script>
+  var audio = document.getElementById('musicfx'); // 获取音频元素
+  var notes = document.querySelectorAll('.music-notes .note'); // 获取所有音符元素
+  var isPlaying = true; // 初始状态为播放
+  var svg = document.querySelector('.rotate'); // 获取 SVG 元素
+
+  function toggleMusic() {
+      // 切换音乐播放状态
+      if (isPlaying) {
+          audio.pause(); // 暂停音频
+          notes.forEach(note => note.style.visibility = 'hidden'); // 隐藏音符
+      } else {
+          audio.play(); // 播放音频
+          notes.forEach(note => note.style.visibility = 'visible'); // 显示音符
+      }
+      isPlaying = !isPlaying; // 切换播放状态
+  }
+
+  // 页面加载时自动播放音乐
+  window.onload = function() {
+      audio.play().then(() => {
+          audio.muted = false; // 取消静音
+          audio.volume = 0.1; // 设置音量为10%
+      });
+  };
+</script>
 
   <a href="index.html" class="back-to-home" title="回到主页">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

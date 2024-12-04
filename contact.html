@@ -1,0 +1,259 @@
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我 - 灭天神话_666的个人主页</title>
+  <link rel="icon" type="img/png" href="img/favicon.png">
+  <style>
+    body, html {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      min-height: 100vh;
+      background-color: #1e90ff;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f0f0f0;
+    }
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: #1e90ff; 
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      position: fixed;
+      padding: 10px;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .top-nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .top-nav li {
+      margin-left: 20px;
+    }
+    .top-nav a {
+      text-decoration: none;
+      color: #f0f0f0;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .top-nav a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: white;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .top-nav a:hover, .top-nav a.active {
+      color: black;
+      transform: scale(1.1);
+    }
+    .top-nav a:hover::after, .top-nav a.active::after {
+      transform: scaleX(1);
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 0px; 
+      justify-content: center; 
+      align-items: center; 
+    }
+    .qrcode-container {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      width:calc(100% - 40px)
+    }
+    .qrcode-box {
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+      border-radius: 10px; 
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); 
+      background-color: #fff; 
+      width: 240px;
+    }
+    .qrcode-box p {
+      margin-top: 0px;
+      margin-bottom: 0;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+    .music-player {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .music-player:hover {
+    transform: scale(1.1);
+  }
+  .music-icon {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotate 5s linear infinite;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  .music-player:hover .music-icon {
+    box-shadow: 0 0 0 2px black, 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .music-notes {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  .note {
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    animation: float 2s ease-in-out infinite;
+    opacity: 0;
+  }
+  .note:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .note:nth-child(3) {
+    animation-delay: 1s;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); opacity: 0; }
+    50% { transform: translateY(-20px); opacity: 1; }
+  }
+    .back-to-home {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #4CAF50;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  .back-to-home:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-container">
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="downloads.html">资源下载</a></li>
+      <li><a href="contact.html" class="active">联系我</a></li>
+    </ul>
+  </div>
+  </nav>
+
+  <div class="content">
+    <div class="qrcode-container">
+      <div class="qrcode-box">
+        <img src="svg/1群.svg" alt="群聊1">
+        <p>粉丝群1：749740230</p>
+        <p>密码：关注后按照提示回复</p>
+      </div>
+      <div class="qrcode-box">
+        <img src="svg/2群.svg" alt="群聊2">
+        <p>粉丝群2：48905110</p>
+        <p>密码：关注后按照提示回复</p>
+      </div>
+      <div class="qrcode-box">
+        <img src="svg/mail.svg" alt="投稿邮箱">
+        <p>投稿邮箱：MTSH666TG@outlook.com</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="music-player">
+    <div class="music-icon" onclick="toggleMusic()">
+      <audio id="musicfx" loop="loop" autoplay="autoplay" muted>
+        <source src="music/1.mp3" type="audio/mpeg">
+      </audio>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/>
+        </svg>
+    </div>
+    <div class="music-notes">
+        <span class="note">♪</span>
+        <span class="note">♫</span>
+        <span class="note">♩</span>
+    </div>
+</div>
+
+<script>
+  var audio = document.getElementById('musicfx'); // 获取音频元素
+  var notes = document.querySelectorAll('.music-notes .note'); // 获取所有音符元素
+  var isPlaying = true; // 初始状态为播放
+  var svg = document.querySelector('.rotate'); // 获取 SVG 元素
+
+  function toggleMusic() {
+      // 切换音乐播放状态
+      if (isPlaying) {
+          audio.pause(); // 暂停音频
+          notes.forEach(note => note.style.visibility = 'hidden'); // 隐藏音符
+      } else {
+          audio.play(); // 播放音频
+          notes.forEach(note => note.style.visibility = 'visible'); // 显示音符
+      }
+      isPlaying = !isPlaying; // 切换播放状态
+  }
+
+  // 页面加载时自动播放音乐
+  window.onload = function() {
+      audio.play().then(() => {
+          audio.muted = false; // 取消静音
+          audio.volume = 0.1; // 设置音量为10%
+      });
+  };
+</script>
+
+  <a href="index.html" class="back-to-home" title="回到主页">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </a>
+
+</body></html>
