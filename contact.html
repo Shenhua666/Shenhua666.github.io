@@ -73,34 +73,155 @@
     .top-nav a:hover::after, .top-nav a.active::after {
       transform: scaleX(1);
     }
-    .content {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding-top: 0px; 
-      justify-content: center; 
-      align-items: center; 
-    }
-    .qrcode-container {
-      display: flex;
-      justify-content: space-around;
-      padding: 20px;
-      width:calc(100% - 40px)
-    }
-    .qrcode-box {
-      text-align: center;
-      padding: 40px 20px 20px 20px;
-      border-radius: 10px; 
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); 
-      background-color: #fff; 
-      width: 240px;
-    }
-    .qrcode-box p {
-      margin-top: 0px;
-      margin-bottom: 0;
-      font-size: 20px;
-      letter-spacing: 0;
-    }
+    .contact-section {
+    margin: 70px 20px 20px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 40px;
+    height: calc(100vh - 110px);
+    box-sizing: border-box;
+  }
+  h1 {
+    color: #1e90ff;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .left-side {
+    flex: 1;
+    padding: 40px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 400px;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px; 
+    margin: 0 auto 20px;
+    border: 3px solid #1e90ff;
+    padding: 5px;
+    object-fit: cover; 
+    display: block; 
+  }
+  .right-side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 700px;
+    gap: 40px;
+  }
+  .main-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1e90ff;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.3;
+    word-wrap: break-word;
+  }
+  .sub-text {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .qr-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    height: calc(50% - 20px);
+  }
+  .qr-code {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #1e90ff;
+    border-radius: 15px;
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .qr-code:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  .qr-code img {
+    width: 180px;
+    height: 180px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  .qr-code p {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #1e90ff;
+    font-size: 18px;
+  }
+  .join-button {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 80%;
+    font-size: 16px;
+  }
+  .join-button:hover {
+    background-color: #1873cc;
+    transform: scale(1.05);
+  }
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    height: calc(50% - 20px);
+  }
+  .platform-card {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #1e90ff;
+    border-radius: 15px;
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .platform-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  .platform-icon {
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+  }
+  .platform-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e90ff;
+    margin-bottom: 10px;
+  }
+  a {
+  color: inherit; /* 继承父元素的文字颜色 */
+  text-decoration: none; /* 去掉下划线 */
+}
     .music-player {
     position: fixed;
     left: 20px;
@@ -174,6 +295,25 @@
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
+  @media (max-width: 1200px) {
+    .contact-section {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .left-side, .right-side {
+      display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    height: calc(50% - 20px);
+    }
+    .qr-container {
+      grid-template-columns: 1fr;
+    }
+    .platform-grid {
+      grid-template-columns: 1fr;
+    }
+  }
   </style>
 </head>
 <body>
@@ -186,26 +326,51 @@
     </ul>
   </div>
   </nav>
-
-  <div class="content">
-    <div class="qrcode-container">
-      <div class="qrcode-box">
-        <img src="svg/1群.svg" alt="群聊1">
-        <p>粉丝群1：749740230</p>
-        <p>密码：关注后按照提示回复</p>
+  <section class="contact-section">
+    <div class="left-side">
+      <a href="https://space.bilibili.com/107706498">
+        <img src="IMG/tx.jpg" alt="头像" class="avatar">
+      </a>
+      <div class="main-text">和灭天神话_666聊天</div>
+      <div class="sub-text">聊天和问题解答请去粉丝群</div>
+      <div class="sub-text">在群内请严格遵守群规，违者将踢出群聊</div>
+      <div class="sub-text">合作请联系：mietianshenhua666@163.com</div>
+      <div class="sub-text">投稿邮箱：mtsh666tougao@outlook.com</div>
+    </div>
+    <div class="right-side">
+      <div class="qr-container">
+        <div class="qr-code">
+          <img src="svg/1群.svg" alt="粉丝群1二维码" class="platform-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4283" width="200" height="200"></img>
+          <p>1号小窝: 749740230</p>
+          <p>密码请关注我后按提示获取</p>
+          <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Nieau9Cdwb7rijCtvPQMzI2q45zxuX25&authKey=vwQxP3d7y8QXp%2FlyO0rkQ5rOJE0bojggcsxYHfM1XnCVRPVQM2FXs%2BQ8qa%2B3IRol&noverify=0&group_code=749740230" button class="join-button">点击加入</a>
+        </div>
+        <div class="qr-code">
+          <img src="svg/2群.svg" alt="粉丝群2二维码" class="platform-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4283" width="200" height="200"></img>
+          <p>2号小窝: 489051110</p>
+          <p>密码请关注我后按提示获取</p>
+          <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0ELzfvZz1rI_gL5DEBa7NUMd2QN6V99n&authKey=fAWJC27dNvGhV5zvnhQZW1VVX33%2FR3co1q0eY466nroNkNzSY8yfJs8gl0102Kij&noverify=0&group_code=489051110" button class="join-button">点击加入</a>
+        </div>
       </div>
-      <div class="qrcode-box">
-        <img src="svg/2群.svg" alt="群聊2">
-        <p>粉丝群2：48905110</p>
-        <p>密码：关注后按照提示回复</p>
-      </div>
-      <div class="qrcode-box">
-        <img src="svg/mail.svg" alt="投稿邮箱">
-        <p>投稿邮箱：MTSH666TG@outlook.com</p>
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-title">加入我的KOOK频道</div>
+          <svg class="platform-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4283" width="20" height="20">
+            <path d="M153.930323 0L0 724.067097l56.485161 108.345806h370.621936l86.214193 166.152258h83.571613l36.005162-166.152258h229.24387l150.95742-719.44258L952.980645 0H153.930323z m45.584516 706.56L328.010323 114.952258h190.926451l-32.701935 152.609032 141.047742-158.224516h185.64129l-14.534194 79.27742-214.709677 249.393548 115.612903 202.157419-16.516129 66.394839h-176.392258l-84.892903-157.894194-27.086452 157.894194h-194.890322z" p-id="4284" fill="#1afa29"></path>
+          </svg>
+          <a href="https://kook.vip/XQ3OeP" button class="join-button">点击加入</a>
+        </div>
+        <div class="platform-card">
+          <div class="platform-title">加入我的Discord频道</div>
+          <svg class="platform-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5510" width="20" height="20">
+            <path d="M606.4 428.8c-28.8 0-52.8 25.6-52.8 57.6s24 57.6 52.8 57.6c28.8 0 52.8-25.6 52.8-57.6s-24-57.6-52.8-57.6zM419.2 428.8c-28.8 0-52.8 25.6-52.8 57.6s24 57.6 52.8 57.6c28.8 0 52.8-25.6 52.8-57.6s-24-57.6-52.8-57.6z" p-id="5511" fill="#5a64ee"></path>
+            <path d="M854.4 0H169.6C110.4 0 64 46.4 64 105.6v692.8c0 57.6 46.4 105.6 105.6 105.6h580.8l-27.2-94.4 65.6 60.8 62.4 57.6 108.8 96V105.6C960 46.4 913.6 0 854.4 0zM657.6 668.8s-19.2-22.4-33.6-41.6c67.2-19.2 92.8-60.8 92.8-60.8-20.8 14.4-41.6 24-59.2 30.4-25.6 11.2-49.6 17.6-73.6 22.4-49.6 9.6-94.4 6.4-132.8 0-28.8-6.4-54.4-14.4-75.2-22.4-11.2-4.8-24-9.6-36.8-17.6-1.6-1.6-3.2-1.6-4.8-3.2-1.6 0-1.6-1.6-1.6-1.6-9.6-4.8-14.4-8-14.4-8s24 41.6 89.6 60.8c-16 19.2-33.6 43.2-33.6 43.2-113.6-3.2-156.8-78.4-156.8-78.4 0-164.8 73.6-299.2 73.6-299.2 73.6-56 144-54.4 144-54.4l4.8 6.4C347.2 272 304 312 304 312s11.2-6.4 30.4-14.4c54.4-24 97.6-30.4 116.8-32 3.2 0 6.4-1.6 8-1.6 32-4.8 67.2-4.8 104-1.6 48 6.4 100.8 19.2 153.6 49.6 0 0-40-38.4-128-65.6l6.4-8s70.4-1.6 144 54.4c0 0 73.6 134.4 73.6 299.2 1.6-1.6-41.6 73.6-155.2 76.8z" p-id="5512" fill="#5a64ee"></path>
+          </svg>
+          <a href="https://discord.gg/DejUP45k7S" button class="join-button">点击加入</a>
+        </div>
       </div>
     </div>
-  </div>
-
+  </section>
 
   <div class="music-player">
     <div class="music-icon" onclick="toggleMusic()">
