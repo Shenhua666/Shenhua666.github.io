@@ -4,6 +4,10 @@
   <title>联系我 - 灭天神话_666的个人主页</title>
   <link rel="icon" type="img/png" href="img/favicon.png">
   <style>
+    a {
+  color: inherit;
+  text-decoration: none; 
+    }
     body, html {
       font-family: 'Roboto', sans-serif;
       margin: 0;
@@ -74,37 +78,38 @@
       transform: scaleX(1);
     }
     .contact-section {
-    margin: 70px 20px 20px 20px;
+    margin: 60px 20px 20px 20px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 40px;
-    height: calc(100vh - 110px);
-    box-sizing: border-box;
+    gap: 30px;
+    height: 800
+    overflow-y: auto;
   }
   h1 {
     color: #1e90ff;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   .left-side {
     flex: 1;
-    padding: 40px;
+    padding: 20px;
     background-color: #f0f0f0;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 400px;
+    min-width: 300px;
+    height: 770px;
   }
   .avatar {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 15px; 
     margin: 0 auto 20px;
     border: 3px solid #1e90ff;
@@ -116,12 +121,12 @@
     flex: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-width: 700px;
-    gap: 40px;
+    align-items: center;
+    min-width: 600px;
+    height: 100%;
   }
   .main-text {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: bold;
     color: #1e90ff;
     margin-bottom: 20px;
@@ -130,56 +135,59 @@
     word-wrap: break-word;
   }
   .sub-text {
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 15px;
     text-align: center;
   }
   .qr-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    height: calc(50% - 20px);
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 20px;
+    margin: 0;
   }
   .qr-code {
-    text-align: center;
-    padding: 20px;
-    border: 2px solid #1e90ff;
-    border-radius: 15px;
-    background-color: white;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 380px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15px;
+    text-align: center;
+    border: 2px solid #1e90ff;
+    border-radius: 15px;
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .qr-code:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
   .qr-code img {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   .qr-code p {
-    margin: 10px 0;
+    margin: 15px 0;
     font-weight: bold;
     color: #1e90ff;
-    font-size: 18px;
+    font-size: 20px;
   }
   .join-button {
     background-color: #1e90ff;
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
+    padding: 12px 25px;
+    margin-top: 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 80%;
-    font-size: 16px;
+    font-size: 18px;
   }
   .join-button:hover {
     background-color: #1873cc;
@@ -188,40 +196,38 @@
   .platform-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    height: calc(50% - 20px);
-  }
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
   .platform-card {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
     text-align: center;
-    padding: 20px;
     border: 2px solid #1e90ff;
     border-radius: 15px;
     background-color: white;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   .platform-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
   .platform-icon {
-    width: 150px;
-    height: 150px;
-    margin: 10px auto;
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
   }
   .platform-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #1e90ff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
-  a {
-  color: inherit; /* 继承父元素的文字颜色 */
-  text-decoration: none; /* 去掉下划线 */
-}
     .music-player {
     position: fixed;
     left: 20px;
@@ -300,18 +306,30 @@
       flex-direction: column;
       align-items: center;
       gap: 30px;
+      height: auto;
+      min-height: 100vh;
+      padding: 20px;
+      margin-top: 70px;
     }
     .left-side, .right-side {
-      display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    height: calc(50% - 20px);
+      width: 100%;
+      min-width: unset;
+      height: auto;
     }
-    .qr-container {
+    .right-side {
+      min-width: unset;
+    }
+    .qr-container, .platform-grid {
       grid-template-columns: 1fr;
+      gap: -20px;
+    }
+    .qr-code, .platform-card {
+      height: auto;
+      min-height: 380px;
+      margin-bottom: 20px;
     }
     .platform-grid {
-      grid-template-columns: 1fr;
+      margin-top: 20px;
     }
   }
   </style>
@@ -329,7 +347,7 @@
   <section class="contact-section">
     <div class="left-side">
       <a href="https://space.bilibili.com/107706498">
-        <img src="img/tx.jpg" alt="头像" class="avatar">
+      <img src="img/tx.jpg" alt="头像" class="avatar">
       </a>
       <div class="main-text">和灭天神话_666聊天</div>
       <div class="sub-text">聊天和问题解答请去粉丝群</div>
@@ -342,13 +360,13 @@
         <div class="qr-code">
           <img src="svg/1群.svg" alt="粉丝群1二维码" class="platform-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4283" width="200" height="200"></img>
           <p>1号小窝: 749740230</p>
-          <p>密码请关注我后按提示获取</p>
+          <p style="font-size: 14px; color: #666; margin-top: -10px;">密码请关注我后按提示获取</p>
           <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Nieau9Cdwb7rijCtvPQMzI2q45zxuX25&authKey=vwQxP3d7y8QXp%2FlyO0rkQ5rOJE0bojggcsxYHfM1XnCVRPVQM2FXs%2BQ8qa%2B3IRol&noverify=0&group_code=749740230" button class="join-button">点击加入</a>
         </div>
         <div class="qr-code">
           <img src="svg/2群.svg" alt="粉丝群2二维码" class="platform-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4283" width="200" height="200"></img>
           <p>2号小窝: 489051110</p>
-          <p>密码请关注我后按提示获取</p>
+          <p style="font-size: 14px; color: #666; margin-top: -10px;">密码请关注我后按提示获取</p>
           <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0ELzfvZz1rI_gL5DEBa7NUMd2QN6V99n&authKey=fAWJC27dNvGhV5zvnhQZW1VVX33%2FR3co1q0eY466nroNkNzSY8yfJs8gl0102Kij&noverify=0&group_code=489051110" button class="join-button">点击加入</a>
         </div>
       </div>
