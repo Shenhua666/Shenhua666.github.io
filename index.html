@@ -1,315 +1,315 @@
-<html><head><base href="https://mietianshenhua.online/index.html">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>灭天神话_666的个人主页</title>
-<link rel="icon" type="img/png" href="img/favicon.png">
-<style>
-  body, html {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f5f5f5;
-    color: #333;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  .container {
-    display: flex;
-    margin-top: 70px;
-    padding: 20px;
-    gap: 20px;
-    height: calc(100vh - 110px);
-  }
-
-  .main-content {
-    flex: 3;
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    overflow: auto;
-  }
-
-  .sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .sidebar-section {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  }
-
-  .platform-icons, .friend-links {
-    display: grid;
-    gap: 15px;
-    justify-content: center;
-  }
-
-  .platform-icons {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
-
-  .friend-links {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .icon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-
-  .platform-icon, .friend-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    color: #1e90ff;
-  }
-
-  .platform-icon:hover, .friend-icon:hover {
-    transform: translateY(-5px);
-  }
-
-  .icon-name {
-    font-size: 12px;
-    margin-top: 5px;
-    text-align: center;
-  }
-
-  .section-title {
-    margin: 0 0 15px 0;  
-    color: #333;
-    font-weight: bold;
-  }
-
-  .sidebar-section {
-    padding-top: 15px;  
-  }
-
-  .top-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background-color: #1e90ff; 
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    position: fixed;
-    padding: 10px;
-    justify-content: flex-end;
-  }
-
-  .top-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .top-nav li {
-    margin-left: 20px;
-  }
-
-  .top-nav a {
-    text-decoration: none;
-    color: #f0f0f0;
-    font-weight: bold;
-    position: relative;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  .top-nav a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: white;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  .top-nav a:hover, .top-nav a.active {
-    color: black;
-    transform: scale(1.1);
-  }
-  .top-nav a:hover::after, .top-nav a.active::after {
-    transform: scaleX(1);
-  }
-
-  .friend-links a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .friend-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    color: #1e90ff;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .music-player {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    display: flex;
-    align-items: center;
-    z-index: 1000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .music-player:hover {
-    transform: scale(1.1);
-  }
-
-  .music-icon {
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: rotate 5s linear infinite;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease;
-  }
-
-  .music-player:hover .music-icon {
-    box-shadow: 0 0 0 2px black, 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .music-notes {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-  }
-
-  .note {
-    font-size: 20px;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    animation: float 2s ease-in-out infinite;
-    opacity: 0;
-  }
-
-  .note:nth-child(2) {
-    animation-delay: 0.5s;
-  }
-
-  .note:nth-child(3) {
-    animation-delay: 1s;
-  }
-  .text-image-blocks {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .text-image-block {
-    display: flex;
-    background: rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    height: 120px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  .text-image-block:last-child {
-    border-bottom: none;
-  }
-  .text-image-block.reverse {
-    flex-direction: row-reverse;
-  }
-  .block-image {
-    width: 320px;
-    height: 120px;
-    object-fit: cover;
-  }
-  .block-text {
-    flex: 1;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: whitesmoke;
-  }
-  .block-text h3 {
-    margin: 0 0 1rem;
-    color: #000000;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-  }
-  .block-text p {
-    margin: 0;
-    color: #000000;
-  }
-  .block-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    width: 100%;
-  }
-  .text-image-block.reverse .block-link {
-    flex-direction: row-reverse;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); opacity: 0; }
-    50% { transform: translateY(-20px); opacity: 1; }
-  }
-
-  .back-to-home {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: #4CAF50;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    z-index: 1000;
-  }
-
-  .back-to-home:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+<html><head><base href="https://mietianshenhua.online/contact.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灭天神话_666的个人主页</title>
+  <link rel="icon" type="img/png" href="img/favicon.png">
+  <style>
+    body, html {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .container {
+      display: flex;
+      margin-top: 70px;
+      padding: 20px;
+      gap: 20px;
+      height: calc(100vh - 110px);
+    }
+    .main-content {
+      flex: 3;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      overflow: auto;
+    }
+    .sidebar {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .sidebar-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .platform-icons, .friend-links {
+      display: grid;
+      gap: 15px;
+      justify-content: center;
+    }
+    .platform-icons {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+    .friend-links {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .platform-icon, .friend-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      color: #1e90ff;
+    }
+    .platform-icon:hover, .friend-icon:hover {
+      transform: translateY(-5px);
+    }
+    .icon-name {
+      font-size: 12px;
+      margin-top: 5px;
+      text-align: center;
+    }
+    .section-title {
+      margin: 0 0 15px 0;  
+      color: #333;
+      font-weight: bold;
+    }
+    .sidebar-section {
+      padding-top: 15px;  
+    }
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: #1e90ff; 
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      position: fixed;
+      padding: 10px;
+      justify-content: flex-end;
+    }
+    .top-nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .top-nav li {
+      margin-left: 20px;
+    }
+    .top-nav a {
+      text-decoration: none;
+      color: #f0f0f0;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .top-nav a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: white;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .top-nav a:hover, .top-nav a.active {
+      color: black;
+      transform: scale(1.1);
+    }
+    .top-nav a:hover::after, .top-nav a.active::after {
+      transform: scaleX(1);
+    }
+    .friend-links a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .friend-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      color: #1e90ff;
+      background-size: cover;
+      background-position: center;
+    }
+    .music-player {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .music-player:hover {
+      transform: scale(1.1);
+    }
+    .music-icon {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: rotate 5s linear infinite;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease;
+    }
+    .music-player:hover .music-icon {
+      box-shadow: 0 0 0 2px black, 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .music-notes {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+    }
+    .note {
+      font-size: 20px;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      animation: float 2s ease-in-out infinite;
+      opacity: 0;
+    }
+    .note:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    .note:nth-child(3) {
+      animation-delay: 1s;
+    }
+    .text-image-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .text-image-block {
+      display: flex;
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      height: 120px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 5px;
+    }
+    .text-image-block:hover {
+      transform: translateY(-4px); /* 向上浮动 */
+      box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3); /* 增加阴影 */
+    }
+    .text-image-block:last-child {
+      border-bottom: none;
+    }
+    .text-image-block.reverse {
+      flex-direction: row-reverse;
+    }
+    .block-image {
+      width: 320px;
+      height: 120px;
+      object-fit: cover;
+    }
+    .block-text {
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: whitesmoke;
+    }
+    .block-text h3 {
+      margin: 0 0 1rem;
+      color: #000000;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .block-text p {
+      margin: 0;
+      color: #000000;
+    }
+    .block-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      width: 100%;
+    }
+    .text-image-block.reverse .block-link {
+      flex-direction: row-reverse;
+    }
+  
+    @keyframes float {
+      0%, 100% { transform: translateY(0); opacity: 0; }
+      50% { transform: translateY(-20px); opacity: 1; }
+    }
+  
+    .back-to-home {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: #4CAF50;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+  
+    .back-to-home:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 1100px) {
+      .container {
+          flex-direction: column;
+      }
+      .announcement {
+          flex: 1 0 auto;
+          width: 100%;
+      }
+      .sidebar-section {
+          order: -1;
+      }
+      .main-content {
+          flex: 1 0 auto;
+          overflow: visible;
+          order: 1; 
+      }
+      .main-content .block-image {
+          display: none;
+      }
+      .main-content .block-text {
+          display: block;
+      }
   }
 </style>
 </head>
@@ -325,6 +325,7 @@
   <div class="container">
     <main class="main-content">
       <!-- 左侧四分之三区域 -->
+      
     </main>
     
     <aside class="sidebar">
