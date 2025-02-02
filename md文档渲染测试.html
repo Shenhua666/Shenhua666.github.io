@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><base href="https://mietianshenhua.online/contact.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Viewer</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // 使用fetch API从服务器获取Markdown文件内容
+        fetch('md/001/超级好用的系统维护工具.md')
+            .then(response => response.text())
+            .then(markdownContent => {
+                // 使用marked库将Markdown内容转换为HTML
+                const htmlContent = marked(markdownContent);
+                // 将HTML内容显示在页面上
+                document.getElementById('output').innerHTML = htmlContent;
+            })
+            .catch(error => {
+                console.error('无法加载Markdown文件:', error);
+            });
+    </script>
+</body>
+</html>
