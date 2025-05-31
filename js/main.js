@@ -402,7 +402,12 @@ function renderArticles() {
         articlesContainer.innerHTML = '';
         
         if (articlesConfig.articles && articlesConfig.articles.length > 0) {
-            articlesConfig.articles.forEach((article, index) => {
+            // 移动端只显示前4篇文章
+            const articlesToShow = window.innerWidth <= 1100 ? 
+                articlesConfig.articles.slice(0, 4) : 
+                articlesConfig.articles;
+            
+            articlesToShow.forEach((article, index) => {
                 const articleElement = createArticleElement(article, index % 2 === 0);
                 articlesContainer.appendChild(articleElement);
                 
@@ -415,6 +420,28 @@ function renderArticles() {
                     }
                 });
             });
+
+            // 移动端添加"查看更多"按钮
+            if (window.innerWidth <= 1100 && articlesConfig.articles.length > 4) {
+                const moreBtn = document.createElement('button');
+                moreBtn.className = 'more-btn';
+                moreBtn.textContent = '查看更多文章';
+                moreBtn.addEventListener('click', () => {
+                    articlesContainer.innerHTML = '';
+                    articlesConfig.articles.forEach((article, index) => {
+                        const articleElement = createArticleElement(article, index % 2 === 0);
+                        articlesContainer.appendChild(articleElement);
+                        articleElement.addEventListener('click', () => {
+                            if (article.url.startsWith('http')) {
+                                window.open(article.url, '_blank');
+                            } else {
+                                window.location.href = article.url;
+                            }
+                        });
+                    });
+                });
+                articlesContainer.appendChild(moreBtn);
+            }
         } else {
             const emptyPlaceholder = document.createElement('div');
             emptyPlaceholder.className = 'empty-placeholder';
@@ -423,3 +450,10 @@ function renderArticles() {
         }
     }
 }
+
+// 窗口大小改变时重新渲染文章
+window.addEventListener('resize', () => {
+    if (document.querySelector('.articles-container')) {
+        renderArticles();
+    }
+});
