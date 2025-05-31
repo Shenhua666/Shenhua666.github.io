@@ -334,7 +334,7 @@ function loadArticlesConfig() {
                 id: 4,
                 title: "IPv6公网联机教程",
                 summary: "Minecraft IPv6公网联机教程：操作简单，未来已来，低延迟联机新方案！",
-                image: "md/003/ipv6.png",
+                image: "md/003/IPv6.png",
                 date: "2025-05-25",
                 url: "https://blog.mietianshenhua.online/2025/05/25/IPv6%E5%85%AC%E7%BD%91%E8%81%94%E6%9C%BA/"
             },
@@ -402,12 +402,7 @@ function renderArticles() {
         articlesContainer.innerHTML = '';
         
         if (articlesConfig.articles && articlesConfig.articles.length > 0) {
-            // 移动端只显示前4篇文章
-            const articlesToShow = window.innerWidth <= 1100 ? 
-                articlesConfig.articles.slice(0, 4) : 
-                articlesConfig.articles;
-            
-            articlesToShow.forEach((article, index) => {
+            articlesConfig.articles.forEach((article, index) => {
                 const articleElement = createArticleElement(article, index % 2 === 0);
                 articlesContainer.appendChild(articleElement);
                 
@@ -420,28 +415,6 @@ function renderArticles() {
                     }
                 });
             });
-
-            // 移动端添加"查看更多"按钮
-            if (window.innerWidth <= 1100 && articlesConfig.articles.length > 4) {
-                const moreBtn = document.createElement('button');
-                moreBtn.className = 'more-btn';
-                moreBtn.textContent = '查看更多文章';
-                moreBtn.addEventListener('click', () => {
-                    articlesContainer.innerHTML = '';
-                    articlesConfig.articles.forEach((article, index) => {
-                        const articleElement = createArticleElement(article, index % 2 === 0);
-                        articlesContainer.appendChild(articleElement);
-                        articleElement.addEventListener('click', () => {
-                            if (article.url.startsWith('http')) {
-                                window.open(article.url, '_blank');
-                            } else {
-                                window.location.href = article.url;
-                            }
-                        });
-                    });
-                });
-                articlesContainer.appendChild(moreBtn);
-            }
         } else {
             const emptyPlaceholder = document.createElement('div');
             emptyPlaceholder.className = 'empty-placeholder';
@@ -450,10 +423,3 @@ function renderArticles() {
         }
     }
 }
-
-// 窗口大小改变时重新渲染文章
-window.addEventListener('resize', () => {
-    if (document.querySelector('.articles-container')) {
-        renderArticles();
-    }
-});
