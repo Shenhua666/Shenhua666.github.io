@@ -307,7 +307,7 @@ function loadArticlesConfig() {
                 id: 4,
                 title: "IPv6公网联机教程",
                 summary: "Minecraft IPv6公网联机教程：操作简单，未来已来，低延迟联机新方案！",
-                image: "md/003/IPv6.png",
+                image: "md/003/ipv6.png",
                 date: "2025-05-25",
                 url: "https://blog.mietianshenhua.online/2025/05/25/IPv6%E5%85%AC%E7%BD%91%E8%81%94%E6%9C%BA/"
             },
