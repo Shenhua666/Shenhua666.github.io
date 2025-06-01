@@ -267,60 +267,33 @@ function fetchIPInfo() {
     // 显示加载状态
     ipContainer.innerHTML = '<div class="loading">获取IP信息中...</div>';
 
-    // 尝试多个IP API，增加可靠性
-    const apis = [
-        'https://ipapi.co/json/',
-        'https://ipinfo.io/json', // 如果有token可以加上
-        'https://api.ipify.org?format=json',
-        'https://2024.ipchaxun.com/',
-        'https://www.ip.cn/api/index?ip&type=0'
-    ];
-
-    const tryApi = (index) => {
-        if (index >= apis.length) {
-            ipContainer.innerHTML = '<div class="error">无法获取IP信息</div>';
-            console.error('所有IP API请求失败');
-            return;
-        }
-
-        // 显示当前尝试的API
-        ipContainer.innerHTML = `<div class="loading">尝试API ${index+1}/${apis.length}...</div>`;
-
-        // 添加超时处理
-        const timeout = new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('请求超时')), 5000)
-        );
-
-        Promise.race([
-            fetch(apis[index], {
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }),
-            timeout
-        ])
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP错误: ${response.status}`);
-            return response.json();
-        })
+    // 使用国内可靠的API
+    fetch('https://ip.useragentinfo.com/json')
+        .then(res => res.json())
         .then(data => {
-            console.log('IP API响应:', data);
-            if (!data.ip) throw new Error('无效的IP数据');
-            
             ipContainer.innerHTML = `
                 <div>IP: ${data.ip}</div>
-                <div>位置: ${data.city || data.region || '未知'}, ${data.country_name || data.country || '未知'}</div>
-                <div>运营商: ${data.org || data.asn?.org || '未知'}</div>
+                <div>位置: ${data.city || '未知'}, ${data.province || '未知'}</div>
+                <div>运营商: ${data.isp || '未知'}</div>
             `;
         })
         .catch(error => {
-            console.error(`API ${apis[index]} 请求失败:`, error);
-            ipContainer.innerHTML = `<div class="error">API ${index+1}失败: ${error.message}</div>`;
-            setTimeout(() => tryApi(index + 1), 1000); // 延迟1秒后尝试下一个API
+            console.error('IP查询失败:', error);
+            // 备用方案: 使用纯IP查询
+            fetch('https://api.ipify.org?format=json')
+                .then(res => res.json())
+                .then(ipData => {
+                    ipContainer.innerHTML = `
+                        <div>IP: ${ipData.ip}</div>
+                        <div>位置: 未知</div>
+                        <div>运营商: 未知</div>
+                    `;
+                })
+                .catch(e => {
+                    console.error('备用API也失败:', e);
+                    ipContainer.innerHTML = '<div class="error">无法获取IP信息</div>';
+                });
         });
-    };
-
-    tryApi(0); // 从第一个API开始尝试
 }
 
 // 加载文章数据
