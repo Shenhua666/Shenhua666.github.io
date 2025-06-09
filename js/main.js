@@ -350,6 +350,14 @@ function loadArticlesConfig() {
     articlesConfig = {
         articles: [
             {
+                id: 5,
+                title: "NatFrp内网穿透实现我的世界联机", 
+                summary: "使用NatFrp实现我的世界联机，无需公网IP。",
+                image: "md/004/natfrp.png",
+                date: "2025-06-09",
+                url: "https://blog.mietianshenhua.online/2025/06/09/natfrp%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/"
+            },
+            {
                 id: 4,
                 title: "IPv6公网联机教程",
                 summary: "Minecraft IPv6公网联机教程：操作简单，未来已来，低延迟联机新方案！",
@@ -360,7 +368,7 @@ function loadArticlesConfig() {
             {
                 id: 3,
                 title: "IPv4公网联机教程", 
-                summary: "资源下载页面现已上线，提供环境、启动器和服务端下载。",
+                summary: "Minecraft IPv4公网联机教程：稳定低延迟的联机方式。",
                 image: "md/002/ipv4.png",
                 date: "2025-05-24",
                 url: "https://blog.mietianshenhua.online/2025/05/24/IPv4%E5%85%AC%E7%BD%91%E8%81%94%E6%9C%BA/"
