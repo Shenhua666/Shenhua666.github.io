@@ -3,7 +3,7 @@ let isDarkMode = false;
 const musicState = {
     playing: false,
     currentTime: 0,
-    audio: new Audio('music/MoreanP - Ephemeral Memories.mp3')
+    audio: new Audio('music/Yubel_Q-Audio - The First Summer In Time.mp3')
 };
 musicState.audio.volume = 0.2;
 
