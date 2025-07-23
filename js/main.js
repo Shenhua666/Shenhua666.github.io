@@ -306,6 +306,19 @@ function initHomePage() {
 }
 
 // 获取IP信息
+// 判断是否为本地环境
+function isLocalEnvironment() {
+    const hostname = window.location.hostname;
+    // 检测常见本地地址
+    return hostname === 'localhost' || 
+           hostname === '127.0.0.1' || 
+           hostname === '[::1]' ||
+           hostname.startsWith('192.168.') ||
+           hostname.startsWith('10.') ||
+           /^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(hostname);
+}
+
+// 获取IP信息
 function fetchIPInfo() {
     const ipContainer = document.querySelector('.ip-info');
     if (!ipContainer) return;
@@ -313,9 +326,34 @@ function fetchIPInfo() {
     // 显示加载状态
     ipContainer.innerHTML = '<div class="loading">获取IP信息中...</div>';
 
-    // 使用国内可靠的API
-    fetch('https://ip.useragentinfo.com/json')
-        .then(res => res.json())
+    // 检查本地环境
+    if (isLocalEnvironment()) {
+        setTimeout(() => {
+            ipContainer.innerHTML = `
+                <div>IP: 内网访问</div>
+                <div>位置: 本地调试环境</div>
+                <div>运营商: 本地网络</div>
+            `;
+        }, 500); // 添加轻微延迟使体验更自然
+        return;
+    }
+
+    // 使用国内可靠的API - 添加超时控制
+    const fetchWithTimeout = (url, options = {}, timeout = 3000) => {
+        return Promise.race([
+            fetch(url, options),
+            new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('请求超时')), timeout)
+            )
+        ]);
+    };
+
+    // 主API
+    fetchWithTimeout('https://ip.useragentinfo.com/json')
+        .then(res => {
+            if (!res.ok) throw new Error('API响应错误');
+            return res.json();
+        })
         .then(data => {
             ipContainer.innerHTML = `
                 <div>IP: ${data.ip}</div>
@@ -324,23 +362,39 @@ function fetchIPInfo() {
             `;
         })
         .catch(error => {
-            console.error('IP查询失败:', error);
-            // 备用方案: 使用纯IP查询
-            fetch('https://api.ipify.org?format=json')
+            console.warn('主API查询失败:', error);
+            
+            // 备用方案1: 使用纯IP查询
+            fetchWithTimeout('https://api.ipify.org?format=json')
                 .then(res => res.json())
                 .then(ipData => {
                     ipContainer.innerHTML = `
                         <div>IP: ${ipData.ip}</div>
-                        <div>位置: 未知</div>
-                        <div>运营商: 未知</div>
+                        <div>位置: 正在获取中...</div>
+                        <div>运营商: 正在获取中...</div>
                     `;
+                    
+                    // 尝试获取更多信息 (备用方案2)
+                    fetchWithTimeout(`https://ipapi.co/${ipData.ip}/json/`)
+                        .then(res => res.json())
+                        .then(geoData => {
+                            ipContainer.innerHTML = `
+                                <div>IP: ${ipData.ip}</div>
+                                <div>位置: ${geoData.city || '未知'}, ${geoData.region || '未知'}</div>
+                                <div>运营商: ${geoData.org || '未知'}</div>
+                            `;
+                        })
+                        .catch(e => console.log('补充地理信息获取失败'));
                 })
                 .catch(e => {
-                    console.error('备用API也失败:', e);
+                    console.error('备用API失败:', e);
                     ipContainer.innerHTML = '<div class="error">无法获取IP信息</div>';
                 });
         });
 }
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', fetchIPInfo);
 
 // 加载文章数据
 let articlesConfig = {};
