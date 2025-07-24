@@ -1504,6 +1504,11 @@ body {
     bottom: 80px;
 }
 
+.wechat-QR{
+    right: 20px;
+    bottom: 140px;
+}
+
 .rocket-btn {
     right: 20px;
     bottom: 140px;
@@ -1665,3 +1670,194 @@ body {
         justify-content: center;
     }
 }
+
+/* 气泡容器 */
+        .wechat-bubble {
+            position: fixed;
+            right: 0px; /* 在按钮左侧 */
+            bottom: 210px;
+            width: 260px;
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 1001; /* 高于按钮 */
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        /* 气泡显示状态 */
+        .wechat-bubble.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* 气泡箭头 */
+        .wechat-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid var(--background-color);
+        }
+        
+        /* 气泡标题 */
+        .bubble-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .bubble-header i {
+            font-size: 1.8rem;
+            color: #27ae60;
+            margin-right: 10px;
+        }
+        
+        .bubble-header h3 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        /* 二维码容器 */
+        .qrcode-container {
+            background: var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+    .qrcode-placeholder {
+        width: 200px;
+        height: 200px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* 防止图片超出 */
+    }
+    .qrcode-placeholder img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; /* 保持比例，完整显示图片 */
+    }  
+        
+        /* 底部文字 */
+        .bubble-footer {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+            opacity: 0.8;
+        }
+        
+        /* 移动端跳转提示层 */
+        .mobile-redirect {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .mobile-redirect.show {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 跳转内容 */
+        .redirect-content {
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .redirect-content i {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+        
+        .redirect-content h2 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .redirect-content p {
+            margin-bottom: 25px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .redirect-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .redirect-btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+/* 响应式调整 */
+        @media (max-width: 768px) {
+            .wechat-bubble {
+                right: 80px;
+                bottom: 120px;
+                width: 220px;
+            }
+            
+            .qrcode-placeholder {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        /* 深色模式适配 */
+        [data-theme="dark"] .wechat-bubble {
+            background-color: #2c3e50;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        [data-theme="dark"] .wechat-bubble::after {
+            border-top-color: #2c3e50;
+        }
+        
+        [data-theme="dark"] .qrcode-container,
+        [data-theme="dark"] .bubble-footer {
+            background: #424242;
+        }

@@ -118,19 +118,44 @@
 
     <!-- 浮动按钮容器 -->
     <div class="floating-btns-home">
+        <!-- 微信公众号控件 -->
+         <div class="floating-btn wechat-QR">
+            <span><i class="fa-solid fa-qrcode"></i></span>
+        </div>
         <!-- 书本控件 -->
         <div class="floating-btn book-btn">
-            <span>📚</span>
+            <span><i class="fa-solid fa-book"></i></span>
         </div>
         <!-- 深色模式切换 -->
         <div class="floating-btn theme-toggle">
-            <span>🌙</span>
+            <span><i class="fa-solid fa-moon"></i></span>
         </div>
     </div>
+    <div class="wechat-bubble">
+    <div class="qrcode-container">
+        <div class="qrcode-placeholder" >
+        <img src="img/wxqr.jpg" alt="公众号二维码">
+        </div>
+    </div>
+    <div class="bubble-footer">
+        微信扫描上方二维码，获取更多图文内容。
+    </div>
+</div>
+<!-- 移动端跳转提示 -->
+<div class="mobile-redirect">
+    <div class="redirect-content">
+        <i class="fab fa-weixin"></i>
+        <h2>前往微信公众号</h2>
+        <p>检测到您正在使用移动设备，即将跳转到微信公众平台...</p>
+        <a href="https://open.weixin.qq.com/qr/code?username=gh_fc43c929049c" class="redirect-btn" id="wechat-redirect-btn" target="_blank"> 立即跳转</a>
+    </div>
+</div>
     <script src="js/main.js"></script>
     <script src="js/ip-display.js"></script>
     <script src="js/article-data.js"></script>
+    <script src="js/wechat-QR.js"></script>
     <script src="js/music.js"></script>
+
 </body>
 </body>
 </html>
