@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // 初始化主题
+
 function initTheme() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
@@ -46,6 +47,8 @@ function initTheme() {
     
     if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
         enableDarkMode();
+    } else {
+        disableDarkMode(); // 确保初始化图标状态
     }
 }
 
@@ -61,7 +64,10 @@ function toggleTheme() {
 // 启用深色模式
 function enableDarkMode() {
     document.documentElement.setAttribute('data-theme', 'dark');
-    document.querySelector('.theme-toggle span').textContent = '☀️';
+    const icon = document.querySelector('.theme-toggle i');
+    if (icon) {
+        icon.className = 'fa-solid fa-sun';
+    }
     localStorage.setItem('theme', 'dark');
     isDarkMode = true;
 }
@@ -69,7 +75,10 @@ function enableDarkMode() {
 // 禁用深色模式
 function disableDarkMode() {
     document.documentElement.removeAttribute('data-theme');
-    document.querySelector('.theme-toggle span').textContent = '🌙';
+    const icon = document.querySelector('.theme-toggle i');
+    if (icon) {
+        icon.className = 'fa-solid fa-moon';
+    }
     localStorage.setItem('theme', 'light');
     isDarkMode = false;
 }
@@ -85,7 +94,7 @@ function initFloatingButtons() {
         });
     }
     
-    // 火箭按钮（返回顶部）
+    // 返回顶部按钮
     const rocketBtn = document.querySelector('.rocket-btn');
     if (rocketBtn) {
         // 初始状态检查
