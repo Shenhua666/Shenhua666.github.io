@@ -3,7 +3,7 @@ let isDarkMode = false;
 const musicState = {
     playing: false,
     currentTime: 0,
-    audio: new Audio('music/文武贝 - 秋叶.mp3')
+    audio: new Audio('music/The Lost City - Winter.mp3')
 };
 musicState.audio.volume = 0.2;
 
