@@ -3,7 +3,7 @@ let isDarkMode = false;
 const musicState = {
     playing: false,
     currentTime: 0,
-    audio: new Audio('http://pan.mietianshenhua.online:58090/music/The%20Lost%20City%20-%20Winter.mp3?code=22f79acd7c2301d32c28f3ff0f3335257b9380e1c8490c5ff998769ad6fde21e')
+    audio: new Audio('music/The Lost City - Winter.mp3')
 };
 musicState.audio.volume = 0.2;
 
