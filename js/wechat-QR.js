@@ -55,20 +55,7 @@
                             alert('复制失败，请手动复制：灭天神话666的小基地');
                         });
                 });
-            }
-            // 主题切换功能
-            themeToggle.addEventListener('click', function() {
-                if (isDarkMode) {
-                    document.documentElement.removeAttribute('data-theme');
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    isDarkMode = false;
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    isDarkMode = true;
-                }
-            });
-            
+            }            
             // 点击气泡外部关闭气泡
             document.addEventListener('click', function(e) {
                 if (wechatBubble && !wechatBtn.contains(e.target) && !wechatBubble.contains(e.target)) {
