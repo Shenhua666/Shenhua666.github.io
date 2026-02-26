@@ -3,7 +3,7 @@ let isDarkMode = false;
 const musicState = {
     playing: true,
     currentTime: 0,
-    audio: new Audio('music/刘德华 - 恭喜发财.mp3')
+    audio: new Audio('music/Yubel_Q-Audio - The First Summer In Time.mp3')
 };
 musicState.audio.volume = 0.2;
 
@@ -141,6 +141,7 @@ function initFloatingButtons() {
         });
     }
 }
+
 
 
 
