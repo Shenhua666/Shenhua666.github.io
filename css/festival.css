@@ -1,0 +1,184 @@
+/* ============================================================
+   festival.css — 节日皮肤样式
+   ------------------------------------------------------------
+   约定：
+     1. 所有装饰都挂在 #festival-layer 这个 fixed 图层里，
+        绝不参与文档流，因此不会改变任何页面的布局与尺寸。
+     2. 主题色统一走 --primary / --primary-rgb / --accent，
+        由 festival.js 按节日注入，深浅色主题各自取值。
+     3. 全部动画在 prefers-reduced-motion 下自动关闭。
+   ============================================================ */
+
+/* ---------- 叠加图层 ---------- */
+#festival-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+
+/* 顶部氛围光：让换肤在首屏就能被感知，但不遮挡任何内容 */
+#festival-layer .fest-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  background:
+    radial-gradient(130% 100% at 50% 0%, rgba(var(--primary-rgb), 0.16), transparent 68%),
+    radial-gradient(70% 90% at 8% 0%, rgba(var(--primary-rgb), 0.10), transparent 70%),
+    radial-gradient(70% 90% at 92% 0%, rgba(var(--primary-rgb), 0.10), transparent 70%);
+  opacity: 0.9;
+}
+
+/* ---------- 氛围粒子 ---------- */
+#festival-layer .fest-particle {
+  position: absolute;
+  font-size: var(--size, 18px);
+  line-height: 1;
+  opacity: 0;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+  user-select: none;
+}
+
+/* 飘落 */
+#festival-layer .fest-fall {
+  top: -10vh;
+  left: var(--x, 50%);
+  animation: fest-fall var(--dur, 12s) linear var(--delay, 0s) infinite;
+}
+@keyframes fest-fall {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  8%   { opacity: var(--op, 0.7); }
+  92%  { opacity: var(--op, 0.7); }
+  100% { transform: translate3d(var(--drift, 0px), 120vh, 0) rotate(var(--rot, 180deg)); opacity: 0; }
+}
+
+/* 升腾 */
+#festival-layer .fest-rise {
+  bottom: -10vh;
+  left: var(--x, 50%);
+  animation: fest-rise var(--dur, 14s) linear var(--delay, 0s) infinite;
+}
+@keyframes fest-rise {
+  0%   { transform: translate3d(0, 0, 0) scale(0.85); opacity: 0; }
+  10%  { opacity: var(--op, 0.7); }
+  90%  { opacity: var(--op, 0.7); }
+  100% { transform: translate3d(var(--drift, 0px), -120vh, 0) scale(1.05); opacity: 0; }
+}
+
+/* 闪烁（星光、月华一类，原地不动） */
+#festival-layer .fest-twinkle {
+  top: var(--y, 30%);
+  left: var(--x, 50%);
+  animation: fest-twinkle var(--dur, 6s) ease-in-out var(--delay, 0s) infinite;
+}
+@keyframes fest-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.55) rotate(0deg); }
+  45%      { opacity: var(--op, 0.7); transform: scale(1) rotate(10deg); }
+  70%      { opacity: var(--op, 0.7); transform: scale(0.92) rotate(-6deg); }
+}
+
+/* ---------- 顶部悬挂装饰 ---------- */
+#festival-layer .fest-hang {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  text-align: center;
+  transform-origin: 50% 0;
+  animation: fest-sway 5.2s ease-in-out infinite;
+  display: none;
+}
+#festival-layer .fest-hang-left { left: 10px; }
+#festival-layer .fest-hang-right { right: 10px; }
+
+#festival-layer .fest-hang::before {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 46px;
+  margin: 0 auto;
+  border-radius: 1px;
+  background: linear-gradient(to bottom,
+      rgba(var(--primary-rgb), 0.18),
+      rgba(var(--primary-rgb), 0.62));
+}
+
+#festival-layer .fest-hang span {
+  display: block;
+  margin-top: -2px;
+  font-size: 30px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.14));
+}
+
+@keyframes fest-sway {
+  0%, 100% { transform: rotate(-3.5deg); }
+  50%      { transform: rotate(3.5deg); }
+}
+
+/* 只在左右留白足够宽时悬挂，避免压到导航与正文 */
+@media (min-width: 1340px) {
+  #festival-layer .fest-hang { display: block; }
+}
+
+/* ---------- 皮肤开关（左下角，叠在音乐按钮正上方） ---------- */
+/* 尺寸与音乐按钮一致，跟它排成同一列浮动控件；
+   关闭后按钮保留并变灰，再点一次即可恢复 —— 开关始终可逆。 */
+.fest-toggle {
+  position: fixed;
+  left: 22px;
+  bottom: 74px;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+              opacity var(--transition), filter var(--transition);
+}
+.fest-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 26px rgba(var(--primary-rgb), 0.30), var(--shadow);
+}
+.fest-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.fest-toggle-emoji { font-size: 19px; line-height: 1; }
+.fest-toggle.is-off { opacity: 0.5; filter: grayscale(1); }
+.fest-toggle.is-off:hover { opacity: 0.8; }
+
+@media (max-width: 640px) {
+  .fest-toggle { left: 16px; bottom: 62px; width: 36px; height: 36px; }
+  .fest-toggle-emoji { font-size: 17px; }
+}
+
+/* ---------- 主题色细节跟随 ---------- */
+html[data-festival] .navbar { border-bottom-color: rgba(var(--primary-rgb), 0.18); }
+
+html[data-festival] .nav-link.active {
+  box-shadow: 0 3px 10px rgba(var(--primary-rgb), 0.30);
+}
+
+html[data-festival] .sidebar-section,
+html[data-festival] .articles-section {
+  border-color: rgba(var(--primary-rgb), 0.10);
+}
+
+/* ---------- 无障碍：尊重「减少动态效果」 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #festival-layer .fest-particle { display: none; }
+  #festival-layer .fest-hang { animation: none; }
+  .fest-toggle { transition: none; }
+}

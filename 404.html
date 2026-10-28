@@ -10,6 +10,7 @@
     (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();
   </script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/festival.css">
 </head>
 <body>
 
@@ -19,6 +20,12 @@
         <img src="assets/logo.png" alt="灭天神话_666 的 Logo" class="logo">
         <span class="site-name">灭天神话_666 的个人主页</span>
       </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">主页</a>
+        <a href="downloads.html" class="nav-link">资源下载</a>
+        <a href="games.html" class="nav-link">小游戏</a>
+        <a href="contact.html" class="nav-link">联系我</a>
+      </div>
     </div>
   </nav>
 
@@ -35,5 +42,6 @@
 
   <script src="js/icons.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/festival.js" defer></script>
 </body>
 </html>

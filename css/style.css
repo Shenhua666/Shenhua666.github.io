@@ -16,7 +16,8 @@
   --text-3: #9aa1b1;          /* 弱化文字 */
   --primary: #2563eb;         /* 主色 · 明快蓝 */
   --primary-2: #1d4ed8;       /* 主色深 */
-  --primary-soft: rgba(37, 99, 235, 0.10);
+  --primary-rgb: 37, 99, 235; /* 主色 RGB · 供阴影/发光复用（节日皮肤会改写） */
+  --primary-soft: rgba(var(--primary-rgb), 0.10);
   --accent: #22c55e;          /* 点缀 · 草绿 */
   --accent-soft: rgba(34, 197, 94, 0.12);
   --border: #e4e8f1;
@@ -39,6 +40,7 @@
   --text-3: #6d778c;
   --primary: #4f8cff;
   --primary-2: #3b74e6;
+  --primary-rgb: 79, 140, 255;
   --primary-soft: rgba(79, 140, 255, 0.16);
   --accent: #4ade80;
   --accent-soft: rgba(74, 222, 128, 0.16);
@@ -149,7 +151,7 @@ svg { display: inline-block; }
 .nav-link.active {
   color: #fff;
   background: var(--primary);
-  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.30);
+  box-shadow: 0 3px 10px rgba(var(--primary-rgb), 0.30);
 }
 
 .mobile-menu-btn {
@@ -218,7 +220,7 @@ svg { display: inline-block; }
   width: 38px; height: 38px;
   border-radius: 50%;
   border: 3px solid var(--surface);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -405,7 +407,7 @@ svg { display: inline-block; }
   flex: 0 0 320px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
   min-height: 0;
   overflow-y: auto;
@@ -437,14 +439,14 @@ svg { display: inline-block; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px 14px 10px;
+  padding: 12px 13px 9px;
   box-shadow: var(--shadow);
 }
 .sidebar-section .section-title, .sidebar-section h3 {
   font-size: 0.92rem;
   font-weight: 800;
   color: var(--text);
-  margin-bottom: 11px;
+  margin-bottom: 9px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -455,9 +457,9 @@ svg { display: inline-block; }
 .platform-icons {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  row-gap: 14px;
+  row-gap: 11px;
   column-gap: 8px;
-  padding: 4px 0;
+  padding: 2px 0;
 }
 .platform-icon {
   width: 40px; height: 40px;
@@ -500,7 +502,7 @@ svg { display: inline-block; }
 .friend-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .friend-avatar:hover {
   transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.30);
+  box-shadow: 0 8px 18px rgba(var(--primary-rgb), 0.30);
 }
 .friend-avatar::after {
   content: attr(data-name);
@@ -559,26 +561,46 @@ svg { display: inline-block; }
 
 /* 访问IP */
 .ip-display { font-size: 0.9rem; }
-.ip-display h3 { font-size: 0.92rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.ip-display h3 { font-size: 0.92rem; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 .ip-display h3 .icon { color: var(--primary); }
 .info-item {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 7px 10px;
+  padding: 6px 10px;
   border-radius: 10px;
   background: var(--surface-2);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   font-size: 0.85rem;
 }
 .info-item:last-child { margin-bottom: 0; }
 .info-label { display: flex; align-items: center; gap: 7px; color: var(--text-2); font-weight: 600; white-space: nowrap; }
 .info-label .icon { color: var(--primary); }
 .info-value { color: var(--text); text-align: right; word-break: break-all; }
+/* IPv6 地址较长，单独缩小字号以便一行内尽量放下 */
+.info-value.ipv6 { font-size: 0.75rem; letter-spacing: -0.2px; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.info-value.muted, .info-value.pending { color: var(--text-3); }
 .api-status { display: flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--text-3); padding: 2px 4px; }
 .status-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .status-active { background: var(--accent); }
 .status-inactive { background: #ef4444; }
+
+/* 屏幕高度较矮时进一步收紧侧边栏，避免右侧出现内部滚动条 */
+@media (max-height: 820px) and (min-width: 1101px) {
+  .sidebar { gap: 8px; }
+  .sidebar-section { padding: 8px 12px 6px; }
+  .sidebar-section .section-title, .sidebar-section h3 { margin-bottom: 7px; }
+  .platform-icons { row-gap: 7px; padding: 0; }
+  .platform-icon { width: 34px; height: 34px; }
+  .platform-icon svg { width: 17px; height: 17px; }
+  .friends-container { padding: 0; }
+  .friend-avatar { max-width: 36px; }
+  .welcome-avatar { width: 32px; height: 32px; }
+  .welcome-card .welcome-text p { line-height: 1.45; }
+  .info-item { padding: 4px 9px; margin-bottom: 3px; font-size: 0.82rem; }
+  .ip-display h3 { margin-bottom: 6px; }
+  .api-status { font-size: 0.72rem; padding: 1px 4px; }
+}
 
 /* ---------- 按钮 ---------- */
 .btn, .join-btn, .download-btn, .go-btn, .redirect-btn {
@@ -594,14 +616,14 @@ svg { display: inline-block; }
   font-weight: 700;
   font-size: 0.92rem;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.28);
   transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
   text-align: center;
 }
 .btn:hover, .join-btn:hover, .download-btn:hover, .go-btn:hover, .redirect-btn:hover {
   background: var(--primary-2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.35);
 }
 .btn:active, .join-btn:active, .download-btn:active, .go-btn:active, .redirect-btn:active { transform: translateY(0); }
 
@@ -638,7 +660,7 @@ svg { display: inline-block; }
   width: 110px; height: 110px;
   border-radius: 22px;
   border: 3px solid var(--primary);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.25);
   object-fit: cover;
   margin: 0 auto;
 }
@@ -796,10 +818,43 @@ svg { display: inline-block; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22);
+  box-shadow: 0 2px 6px rgba(var(--primary-rgb), 0.22);
   transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
-.version-link:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(37, 99, 235, 0.30); }
+.version-link:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(var(--primary-rgb), 0.30); }
+
+/* ---------- 小游戏页 ---------- */
+.games-hero { text-align: center; margin: 4px 0 26px; }
+.games-hero h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+.games-hero .play-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.games-hero .play-tip .icon { width: 15px; height: 15px; }
+/* 卡片数量少时居中排列，避免出现空白列 */
+.games-grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 270px));
+  justify-content: center;
+}
+.games-more {
+  text-align: center;
+  margin-top: 26px;
+  font-size: 0.82rem;
+  color: var(--text-3);
+}
 
 /* ---------- 音乐播放器 ---------- */
 .music-player {
@@ -818,8 +873,8 @@ svg { display: inline-block; }
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
 }
-.music-player:hover { transform: scale(1.1); box-shadow: 0 10px 26px rgba(37, 99, 235, 0.30); }
-.music-player.playing { box-shadow: 0 0 18px rgba(37, 99, 235, 0.55), var(--shadow-lg); }
+.music-player:hover { transform: scale(1.1); box-shadow: 0 10px 26px rgba(var(--primary-rgb), 0.30); }
+.music-player.playing { box-shadow: 0 0 18px rgba(var(--primary-rgb), 0.55), var(--shadow-lg); }
 .record { width: 30px; height: 30px; animation: spin 4s linear infinite; }
 .record.paused { animation-play-state: paused; }
 .record path { fill: var(--primary); }
@@ -827,7 +882,7 @@ svg { display: inline-block; }
 .music-particles { pointer-events: none; z-index: 998; }
 
 /* ---------- 浮动按钮 ---------- */
-.floating-btns-home, .floating-btns-download, .floating-btns-contact {
+.floating-btns-home, .floating-btns-download, .floating-btns-games, .floating-btns-contact {
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -857,7 +912,7 @@ svg { display: inline-block; }
 @media (max-width: 640px) {
   body { -webkit-touch-callout: none; }
   .music-player { left: 14px; bottom: 14px; width: 40px; height: 40px; }
-  .floating-btns-home, .floating-btns-download, .floating-btns-contact { right: 14px; bottom: 14px; gap: 10px; }
+  .floating-btns-home, .floating-btns-download, .floating-btns-games, .floating-btns-contact { right: 14px; bottom: 14px; gap: 10px; }
   .floating-btn { width: 42px; height: 42px; }
   .announcement-banner-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
 }

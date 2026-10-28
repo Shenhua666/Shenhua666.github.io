@@ -2,7 +2,7 @@
 const musicState = {
   playing: false,
   currentTime: 0,
-  audio: new Audio('music/Otokaze - 夏恋.mp3')
+  audio: new Audio('music/Catbaux - Hee-haunting Howl-aween.mp3')
 };
 musicState.audio.volume = 0.2;
 musicState.audio.loop = true;

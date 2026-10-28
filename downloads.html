@@ -10,6 +10,7 @@
     (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();
   </script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/festival.css">
 </head>
 <body>
 
@@ -23,6 +24,7 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link">主页</a>
         <a href="downloads.html" class="nav-link active">资源下载</a>
+        <a href="games.html" class="nav-link">小游戏</a>
         <a href="contact.html" class="nav-link">联系我</a>
       </div>
       <button class="mobile-menu-btn" aria-label="展开菜单" title="菜单">
@@ -41,6 +43,11 @@
         <div class="download-item">
           <div class="item-icon"><img src="img/java.png" alt="Java"></div>
           <h3>Java</h3>
+          <p class="os-support">系统支持：
+            <svg class="icon"><use href="#os-win"/></svg>
+            <svg class="icon"><use href="#os-apple"/></svg>
+            <svg class="icon"><use href="#os-linux"/></svg>
+          </p>
           <div class="version-container">
             <a href="https://pan.mietianshenhua.online:9471/s/6bd7d6c80788465aa4" class="version-link">Java8</a>
             <a href="https://pan.mietianshenhua.online:9471/s/30a14d12c06b441988" class="version-link">JDK11</a>
@@ -52,6 +59,9 @@
         <div class="download-item">
           <div class="item-icon"><img src="img/net.png" alt="NET Framework"></div>
           <h3>NET Framework</h3>
+          <p class="os-support">系统支持：
+            <svg class="icon"><use href="#os-win"/></svg>
+          </p>
           <div class="version-container">
             <a href="https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/net35-sp1" class="version-link">3.5SP1</a>
             <a href="https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/net472" class="version-link">4.7.2</a>
@@ -61,15 +71,21 @@
         <div class="download-item">
           <div class="item-icon"><img src="img/vc++.png" alt="Microsoft Visual C++"></div>
           <h3>Microsoft Visual C++</h3>
+          <p class="os-support">系统支持：
+            <svg class="icon"><use href="#os-win"/></svg>
+          </p>
           <div class="version-container">
             <a href="https://www.microsoft.com/zh-cn/download/details.aspx?id=30679" class="version-link">2012</a>
-            <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=48145" class="version-link">2015</a>
-            <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" class="version-link">最新版</a>
+            <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" class="version-link">2015-2022</a>
+            <a href="https://aka.ms/vs/18/release/vc_redist.x64.exe" class="version-link">2026 最新</a>
           </div>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/dtx.png" alt="DirectX"></div>
           <h3>DirectX</h3>
+          <p class="os-support">系统支持：
+            <svg class="icon"><use href="#os-win"/></svg>
+          </p>
           <div class="version-container">
             <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=8109" class="version-link">9.29.1974.1</a>
           </div>
@@ -89,7 +105,7 @@
             <svg class="icon"><use href="#os-apple"/></svg>
             <svg class="icon"><use href="#os-linux"/></svg>
           </p>
-          <a href="https://www.minecraft.net/zh-hant/download" class="download-btn btn" target="_blank" rel="noopener">立即下载</a>
+          <a href="https://www.minecraft.net/zh-hans/download" class="download-btn btn" target="_blank" rel="noopener">立即下载</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/pcl2.png" alt="PCL2"></div>
@@ -97,7 +113,8 @@
           <p class="os-support">系统支持：
             <svg class="icon"><use href="#os-win"/></svg>
           </p>
-          <a href="https://afdian.com/p/0164034c016c11ebafcb52540025c377" class="download-btn btn" target="_blank" rel="noopener">跳转至官网</a>
+          <p class="desc">仅支持 Windows（Win7 及以上，推荐 Win10/11）</p>
+          <a href="https://afdian.com/p/0164034c016c11ebafcb52540025c377" class="download-btn btn" target="_blank" rel="noopener">前往下载</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/hmcl.png" alt="HMCL"></div>
@@ -107,6 +124,7 @@
             <svg class="icon"><use href="#os-apple"/></svg>
             <svg class="icon"><use href="#os-linux"/></svg>
           </p>
+          <p class="desc">全平台，需本机已安装 Java</p>
           <a href="https://hmcl.huangyuhui.net/download/" class="download-btn btn" target="_blank" rel="noopener">跳转至官网</a>
         </div>
         <div class="download-item">
@@ -117,6 +135,7 @@
             <svg class="icon"><use href="#os-apple"/></svg>
             <svg class="icon"><use href="#os-linux"/></svg>
           </p>
+          <p class="desc">4.0 起跨平台；3.0 仅支持 Windows</p>
           <a href="https://www.bakaxl.com" class="download-btn btn" target="_blank" rel="noopener">跳转至官网</a>
         </div>
       </div>
@@ -129,37 +148,41 @@
         <div class="download-item">
           <div class="item-icon"><img src="img/java.png" alt="Minecraft Java Server"></div>
           <h3>官方 Java 版服务端</h3>
-          <p class="version">版本：最新</p>
-          <a href="https://www.minecraft.net/zh-hant/download/server" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
+          <p class="version">版本：26.3</p>
+          <a href="https://www.minecraft.net/zh-hans/download/server" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/bedrock.png" alt="Minecraft Bedrock Server"></div>
           <h3>官方基岩版服务器</h3>
-          <p class="version">版本：最新</p>
-          <a href="https://www.minecraft.net/zh-hant/download/server/bedrock" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
+          <p class="os-support">系统支持：
+            <svg class="icon"><use href="#os-win"/></svg>
+            <svg class="icon"><use href="#os-linux"/></svg>
+          </p>
+          <p class="version">版本：1.26.60.6</p>
+          <a href="https://www.minecraft.net/zh-hans/download/server/bedrock" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/getbukkit.png" alt="Getbukkit"></div>
-          <h3>Java插件 Getbukkit</h3>
-          <p class="version">版本: 1.0.0-26.2</p>
+          <h3>CraftBukkit（GetBukkit）</h3>
+          <p class="version">版本: 1.8-26.3</p>
           <a href="https://getbukkit.org/download/craftbukkit" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/spigotmc.png" alt="Spigotmc"></div>
-          <h3>Java插件 Spigot</h3>
-          <p class="version">版本: 1.0.0-26.2</p>
+          <h3>Spigot 服务端</h3>
+          <p class="version">版本: 1.8-26.3</p>
           <a href="https://www.spigotmc.org/" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/paper.png" alt="Paper"></div>
-          <h3>Java插件 Paper</h3>
-          <p class="version">版本: 1.0.10-26.2</p>
+          <h3>Paper 服务端</h3>
+          <p class="version">版本: 1.8.8-26.3</p>
           <a href="https://papermc.io/" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
         <div class="download-item">
           <div class="item-icon"><img src="img/Leaves.png" alt="Leaves"></div>
-          <h3>Java插件 Leaves</h3>
-          <p class="version">版本: 1.21.8/1.21.11</p>
+          <h3>Leaves 服务端</h3>
+          <p class="version">版本: 1.19-1.21.11</p>
           <a href="https://leavesmc.org/" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
         <div class="download-item">
@@ -171,8 +194,14 @@
         <div class="download-item">
           <div class="item-icon"><img src="img/Mohist.png" alt="Mohist"></div>
           <h3>Java模组插件 MohistMC</h3>
-          <p class="version">版本: 1.12.2/1.16.5/1.20.1/1.21.1/26.2/26.3</p>
+          <p class="version">版本: 1.7.10-1.21.4（已停止维护）</p>
           <a href="https://mohistmc.com/downloads" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
+        </div>
+        <div class="download-item">
+          <div class="item-icon emoji">🧩</div>
+          <h3>Java模组插件 Youer</h3>
+          <p class="version">版本: 1.21.1/26.2（Mohist 继任）</p>
+          <a href="https://mohistmc.com/downloadSoftware?project=youer" class="download-btn btn" target="_blank" rel="noopener">跳转</a>
         </div>
       </div>
     </section>
@@ -297,13 +326,14 @@
 
   <!-- ======= 页脚 ======= -->
   <footer class="site-footer">
-    <p>© 2019 - 2026 <a href="https://space.bilibili.com/107706498?" target="_blank" rel="noopener">灭天神话_666</a> · 本站内容均为原创，转载需注明出处</p>
+    <p>© 2025 <a href="https://space.bilibili.com/107706498?" target="_blank" rel="noopener">灭天神话_666</a> · 本站内容均为原创，转载需注明出处</p>
   </footer>
 
   <!-- ======= 脚本（延迟加载，不阻塞渲染） ======= -->
   <script src="js/icons.js" defer></script>
   <script src="js/particles.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/festival.js" defer></script>
   <script src="js/music.js" defer></script>
 </body>
 </html>
